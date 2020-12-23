@@ -36,8 +36,8 @@ open class MovableView: UIView {
     /// the view does not automatically adjust point if true
     open var isExceedParentView = false
     
-    open var isEdgeAdsorption = false
-    open var safeEdge: UIEdgeInsets = .init(top: -1, left: -1, bottom: -1, right: -1)
+    open var isEdgeAdsorption = true
+    open var safeEdge: UIEdgeInsets = .zero
     
     open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
@@ -90,8 +90,6 @@ open class MovableView: UIView {
         }
         
         guard let spv = superview else { return }
-        
-        let safeEdge = self.safeEdge == .init(top: -1, left: -1, bottom: -1, right: -1) ? .zero : self.safeEdge
         
         var newPoint: CGPoint = .zero
         if horizontallyPosition == .right {
